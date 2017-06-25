@@ -2,8 +2,12 @@
 set -o nounset
 set -o errexit
 
+myrealpath() {
+    echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+}
+
 DEFAULT=~/.venv
-WORKON_HOME=$(realpath ${1:-$DEFAULT})
+WORKON_HOME=$(myrealpath ${1:-$DEFAULT})
 VENV_VENV=$WORKON_HOME/venv
 
 get_latest_pypi_link() {
