@@ -35,8 +35,12 @@ source $VENV_VENV/bin/virtualenvwrapper.sh
 EOF
 }
 
+grepbashrc() {
+    grep -v '^\s*#' ~/.bashrc | grep "$@"
+}
 
-if [[ -e "$VENV_VENV/bin/python" ]] || grep -q virtualenvwrapper ~/.bashrc
+
+if [[ -e "$VENV_VENV/bin/python" ]] || grepbashrc -q virtualenvwrapper
 then
     echo looks like virtualenv is already installed
 else
