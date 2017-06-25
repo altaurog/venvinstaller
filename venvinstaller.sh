@@ -36,7 +36,7 @@ EOF
 }
 
 
-if [[ -e "$VENV_VENV/bin/python" ]]
+if [[ -e "$VENV_VENV/bin/python" ]] || grep -q virtualenvwrapper ~/.bashrc
 then
     echo looks like virtualenv is already installed
 else
@@ -52,11 +52,6 @@ else
     "$VENV_VENV"/bin/pip install virtualenvwrapper
     rm -rf virtualenv*
 
-    if grep -q VIRTUALENV ~/.bashrc
-    then
-        echo "virtualenv config already in .bashrc"
-    else
-        echo "adding virtualenv config to .bashrc"
-        add_to_bashrc
-    fi
+    echo "adding virtualenv config to .bashrc"
+    add_to_bashrc
 fi
