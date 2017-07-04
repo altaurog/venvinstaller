@@ -16,7 +16,7 @@ get_latest_pypi_link() {
     PYPI="https://pypi.python.org"
     URLPATH=$(
         curl -sS $PYPI/simple/$PACKAGE/ \
-        | sed -nr "s;.*<a href=\"../../(packages/[^\"]+)\".*>${PACKAGE}-([^<]+)$FORMAT<.*;\2 \1;p" \
+        | sed -n "s;.*<a href=\"../../\(packages/[^\"]\+\)\".*>${PACKAGE}-\([^<]\+\)$FORMAT<.*;\2 \1;p" \
         | sort -V \
         | tail -n 1 \
         | cut -d " " -f2
